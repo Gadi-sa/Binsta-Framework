@@ -1,0 +1,31 @@
+#typing-text {
+  position: absolute;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  display: none; /* Hidden initially */
+}
+
+.typing {
+  animation: typing 2s steps(30) forwards, blink-caret .75s step-end infinite;
+}
+
+.untyping {
+  animation: untyping 2s steps(30) forwards, blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 240px; }
+}
+
+@keyframes untyping {
+  from { width: 240px; }
+  to { width: 0; }
+}
+
+@keyframes blink-caret {
+  50% { border-color: transparent; }
+}
+

@@ -1,0 +1,11 @@
+{
+    "require": {
+        "twig/twig": "^3.7",
+        "gabordemooij/redbean": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "helpers.php"
+        ]
+    }
+}

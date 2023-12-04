@@ -1,0 +1,60 @@
+{% extends 'layouts/app.twig' %}
+
+{% block title %}Profile - Binsta
+{% endblock %}
+
+{% block content %}
+	<div class="flex justify-center items-center h-screen ">
+		<div class="w-full max-w-md ">
+			<div class="bg-white rounded-lg shadow-lg p-6">
+				{# Button at top right corner #}
+				<div class="mb-4 relative">
+					<a href="javascript:history.back()" class="absolute top-0 right-0 hover:text-red-600 shadow-lg">
+						<button type="button">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" style=" box-shadow: 0 5px 10px 0; border-radius: 20px;">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+							</svg>
+						</button>
+					</a>
+				</div>
+				<div class="mb-4">
+					<img src="/images/profiles/{{ user.profile_picture |default('User-Profile.png') }}" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto">
+					<div class="text-center">
+						<h1 class="text-2xl font-bold mb-4">{{ user.username }}</h1>
+					</div>
+				</div>
+
+				<div class="mb-4">
+					<label class="block text-md font-medium text-gray-900 mb-2" for="username">
+						Username:
+					</label>
+					<p class="gray-900 text-sm">{{ user.username }}</p>
+				</div>
+				<div class="mb-4">
+					<label class="block text-md font-medium text-gray-900 mb-2" for="email">
+						Email:
+					</label>
+					<p class="gray-900 text-sm">{{ user.email }}</p>
+				</div>
+				<div class="mb-4">
+					<label class="block text-md font-medium text-gray-900 mb-2" for="biography">
+						Biography:
+					</label>
+					<p class="gray-900 text-sm">{{ user.biography }}</p>
+				</div>
+				<div class="mb-6">
+					<a href="/feed/userFeed/{{ user.id }}" class="text-sm text-blue-500 hover:text-blue-600">See {{ user.username }}'s feed</a>
+				</div>
+				<div class="flex justify-between">
+					{% if user.id == session.user_id %}
+						<a href="/user/editProfile/{{ user.id }}">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:text-green-700">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+							</svg>
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

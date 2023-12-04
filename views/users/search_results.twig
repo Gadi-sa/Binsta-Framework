@@ -1,0 +1,29 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+	<div class="container mx-auto max-w-4xl mt-10 mb-16 space-y-8">
+		<h1 class="text-2xl font-bold text-gray-900">Search Results</h1>
+
+		{% if users is empty %}
+			<p class="text-gray-600">No users found.</p>
+		{% else %}
+			<ul class="space-y-4">
+				{% for user in users %}
+					<li class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+						<div class="flex items-center space-x-4 p-4">
+
+						<a href="/user/showProfile/{{ user.id }}" class="text-blue-500 hover:text-blue-700">
+
+							<img class="-16 h-16 rounded-full" src="/images/profiles/{{ user.profile_picture|default('User-Profile.png') }}" alt="{{ user.username }}'s profile picture">
+						</a>
+							<div class="flex flex-col">
+								<span class="font-semibold text-gray-900">{{ user.username }}</span>
+								<a href="/feed/userFeed/{{ user.id }}" class="text-sm text-blue-500 hover:text-blue-600">Show users feed</a>
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+{% endblock %}

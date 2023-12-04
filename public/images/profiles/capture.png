@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>UI Implementation</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.ui {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 250px;
+}
+
+.zoom-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.zoom {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.zoom:hover {
+    background-color: #ddd;
+}
+
+.save {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: black;
+    margin-top: 10px;
+}
+
+.save:hover {
+    background-color: #ddd;
+}
+
+    </style>
+</head>
+<body>
+    <div class="ui">
+        <div class="zoom-controls">
+            <span class="zoom zoomin" onclick="zoomIn()">+</span>
+            <span class="zoom zoomout" onclick="zoomOut()">-</span>
+        </div>
+        <p class="zoomlevel">Zoom: <span class="percent">100</span> %</p>
+        <p>Dead: <span class="dead">0</span></p>
+        <p>Alive: <span class="alive">0</span></p>
+        <p>Drawn: <span class="drawn">0</span></p>
+        <p><span class="fps">0</span> FPS</p>
+        <a class="save" href="" download="capture.png">Save</a>
+    </div>
+    <script>
+
+let zoomValue = 100;
+
+function zoomIn() {
+    zoomValue += 10;
+    updateZoom();
+}
+
+function zoomOut() {
+    if (zoomValue > 10) {
+        zoomValue -= 10;
+        updateZoom();
+    }
+}
+
+function updateZoom() {
+    document.querySelector('.percent').textContent = zoomValue;
+}
+
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
