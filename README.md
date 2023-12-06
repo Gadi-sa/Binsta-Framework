@@ -29,7 +29,7 @@ This project is a full-stack application, meaning it includes both frontend and 
 
 ## 1. Clone the repository
 ```shell
- git clone git@bitlab.bit-academy.nl:1094686e-4796-4d01-9e9d-aa213d7182d6/59ea2f94-eae0-11ea-b861-cec41367f4e7/Binsta-Framework.git
+ git@github.com:Gadi-sa/Binsta-Framework.git
 ```
 
 ## 2. Navigate to the project root and install dependencies
